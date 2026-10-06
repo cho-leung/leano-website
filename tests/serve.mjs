@@ -7,7 +7,8 @@ const assets = new Map([
   ['/', ['index.html', 'text/html; charset=utf-8']],
   ['/index.html', ['index.html', 'text/html; charset=utf-8']],
   ['/styles.css', ['styles.css', 'text/css; charset=utf-8']],
-  ['/script.js', ['script.js', 'text/javascript; charset=utf-8']]
+  ['/script.js', ['script.js', 'text/javascript; charset=utf-8']],
+  ['/sitemap.xml', ['sitemap.xml', 'application/xml; charset=utf-8']]
 ]);
 // Serve only browser assets. Backend, archives and audit artifacts stay private.
 const server = http.createServer(async (req, res) => {

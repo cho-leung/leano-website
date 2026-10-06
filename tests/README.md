@@ -6,6 +6,7 @@ From repository root:
 
 ```sh
 python3 tests/static_checks.py
+python3 tests/search_discoverability.py
 node --check script.js
 node --check < apps-script/Code.gs
 node --test tests/backend.test.cjs tests/i18n.test.cjs
@@ -31,6 +32,12 @@ If the host uses a system HTTP proxy, set `LEANO_TEST_PROXY` to that existing pr
 Static checks cover explicit tag structure, IDs, links/assets, ARIA references, form attributes, required fields, lexical CSS balance and the specified English claim phrases. They are not a full HTML standards validator, accessibility certification or translation certification. The browser suite checks 45 viewport/language combinations, URL preferences, metadata, native validation/POST, repeat submission, back-cache reset, no-JavaScript behavior, keyboard basics, clipboard feedback and motion. Apps Script tests establish local control-flow behavior only; Google runtime, quotas, permissions, delivery and live ledger state remain untested.
 
 The local browser suite substitutes only the endpoint value in its in-memory script responses to exercise disconnected and synthetic endpoint cases. All actual browser logic remains the production source. It never submits to the configured production Web App.
+
+## Search discoverability check
+
+`python3 tests/search_discoverability.py` verifies the canonical homepage, indexing directives, namespaced sitemap XML and minimal WebSite JSON-LD using the existing page description. It also pins the search-pass baseline (`2dffb87`) hashes for the page body, script, styles and Apps Script source/manifest, protecting visible copy, RFQ fields/endpoint and backend files. Future authorized changes to these files require intentionally updating those baseline hashes.
+
+After deployment, run `python3 tests/search_discoverability.py --live`. This compares the actual hosted homepage, sitemap, script and styles with local bytes, checks HTTP indexing restrictions and validates the same search metadata. It only makes GET requests; no RFQ is submitted. If needed, use the host's existing `HTTPS_PROXY`. Results are saved under ignored `audit-artifacts/search-discoverability/`. These checks verify published metadata, not crawler indexing or search ranking.
 
 ## Locale art-direction QA
 
