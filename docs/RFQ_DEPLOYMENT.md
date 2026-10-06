@@ -1,8 +1,6 @@
 # RFQ configuration and live technical gate
 
-**Current state: static Pages site LIVE; Apps Script NOT CONFIGURED by the agent. Live backend test: NOT RUN. TECHNICAL GATE: NOT PASSED.**
-
-The user authorized the configuration/hosting stage. The static site is https://cho-leung.github.io/leano-website/. The remaining Google account, private-property and deployment actions require the operator; follow `GOOGLE_CONFIGURATION_HANDOFF.md`.
+The production `/exec` endpoint is configured centrally and GitHub Pages serves the updated frontend. The operator completed private Script Properties, `checkConfiguration`, Sheets/Gmail consent and deployment. Current live results and the final gate decision are in [PRODUCTION_INTEGRATION.md](PRODUCTION_INTEGRATION.md).
 
 ## Prepared source
 
@@ -10,27 +8,14 @@ Five-language shared RFQ form; native `application/x-www-form-urlencoded` POST; 
 
 Required customer fields: company, email, requirement, destination. Optional: name, quantity, deadline, phone, additional_requirements. Metadata: language, source_page, referrer, campaign, outreach_source, submission_type. Attribution and test labels can be forged; no internal commercial state is accepted from the browser.
 
-## Backend configuration awaiting operator
+## Production configuration
 
-Follow `../apps-script/README.md` for private Script Properties and the exact **RFQ Ledger** schema. Configure `SPREADSHEET_ID`, `NOTIFICATION_EMAIL` and an HTTPS `SITE_BASE_URL`; the repository does not contain their actual values. The read-only `checkConfiguration` helper can verify access without writing a row or sending mail, after private configuration and human Google authorization.
+Use `../apps-script/README.md` and `GOOGLE_CONFIGURATION_HANDOFF.md` as configuration references. The actual private `SPREADSHEET_ID` and `NOTIFICATION_EMAIL` are not in this repository. The authorized public site URL is `https://cho-leung.github.io/leano-website/`. Preserve `.nojekyll`, relative assets and the single `RFQ_CONFIG.endpoint` setting.
 
-Then create the authorized Web App deployment, execute as owner with access appropriate for anonymous prospects, and configure its `/exec` URL in `../script.js`. The static website is already published from `main` at repository root; configuring the endpoint will require a new commit/push. Preserve `.nojekyll` and relative asset paths. Do not publish ignored ZIPs, archives, frozen previews, audit artifacts, spreadsheet files, credentials or customer data.
+Do not publish ignored ZIPs, archives, previews, raw audit evidence, spreadsheet exports, credentials or customer data. Google configuration/deployment changes that require account approval remain operator actions.
 
-## Live gate — all remain unchecked
+## Required live gate
 
-- [ ] Required-field and email validation work on the hosted site.
-- [ ] Native hosted POST reaches the configured `/exec` deployment.
-- [ ] A controlled submission creates exactly the intended row in the correct sheet, matching all 27 columns.
-- [ ] Timestamp and unique lead ID are generated server-side; commercial defaults are correct.
-- [ ] `submission_type = controlled_test`; this is a technical fixture, not a real RFQ or market validation.
-- [ ] Gmail notification arrives at the configured operator inbox.
-- [ ] Reply-To equals the controlled customer address.
-- [ ] Visitor success follows persistence.
-- [ ] Invalid/duplicate/extra-field requests create no row and show no false success.
-- [ ] Mobile hosted submission works.
-- [ ] All five localized result pages are checked.
-- [ ] Notification-failure handling is checked under a controlled, separately authorized procedure; a persisted request remains successful and the recovery status/log is inspected.
+The hosted website must submit a synthetic `controlled_test` using an operator-controlled email, create the correct row in the intended 27-column RFQ ledger, and deliver the Gmail notification with matching Reply-To. Verify `submission_type`, `lead_status`, commercial defaults, success after persistence, mobile submission, and invalid-request rejection without false success.
 
-**Do not mark the gate passed until a live hosted submission creates the correct Sheet row and Gmail notification.** Local mock tests cannot satisfy this gate.
-
-Operators should inspect execution logs for notification/recovery failures. An interrupted response or ambiguous Sheet flush may require checking the ledger before resubmission. This stage did not inspect any live ledger or account, so current backend configuration and deployment state outside the repository are unknown.
+Local mocks and static hosting alone cannot satisfy this gate. Notification-failure recovery, duplicate fields, unexpected fields and localized backend result variants have local coverage; production fault injection and live submissions in every language are outside this final integration test. Inspect execution logs and the ledger before resubmitting after an interrupted response, to avoid duplicate rows.

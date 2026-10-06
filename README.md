@@ -29,6 +29,7 @@ docs/
   MIGRATION_AUDIT.md
   GOOGLE_CONFIGURATION_HANDOFF.md
   HOSTING_STATUS.md
+  PRODUCTION_INTEGRATION.md
 tests/
   README.md
   serve.mjs
@@ -55,14 +56,14 @@ Run `python3 tests/static_checks.py` and `node --test tests/backend.test.cjs tes
 
 Static website → native URL-encoded HTML form POST → Apps Script `/exec` → Sheet persistence → Gmail notification → localized result page. The static page alone cannot receive RFQs.
 
-The endpoint remains `PASTE_APPS_SCRIPT_EXEC_URL_HERE` in `script.js`. Until an authorized production endpoint is configured, valid form attempts display a localized disconnected message and send nothing. `/dev` endpoints are refused. JavaScript is needed to connect the form; without it, readable content and an email-thread fallback remain, and submit is disabled.
+The production `/exec` endpoint is configured once in `RFQ_CONFIG.endpoint` in `script.js`. The hosted form now posts to the authorized Apps Script deployment. If the configuration is absent or invalid, valid form attempts display a localized disconnected message and send nothing. `/dev` endpoints are refused. JavaScript is needed to connect the form; without it, readable content and an email-thread fallback remain, and submit is disabled.
 
 Configure `SPREADSHEET_ID`, `SITE_BASE_URL` and `NOTIFICATION_EMAIL` privately through Script Properties. No credentials, spreadsheet exports or customer data belong in Git. Public attribution and `controlled_test` labels are untrusted metadata, not authenticated commercial state. The client never sets qualification, payment or other internal ledger fields.
 
-## Status and next stage
+## Production integration status
 
-**GitHub Pages is live at https://cho-leung.github.io/leano-website/. RFQ backend is unconfigured. Live backend tests: NOT RUN. Technical gate: NOT PASSED.**
+GitHub Pages is live at [cho-leung.github.io/leano-website](https://cho-leung.github.io/leano-website/), serving `main` from repository root over HTTPS. The operator completed private Google configuration, consent and Web App deployment. The endpoint is configured and live controlled submissions have been checked against the intended ledger and delivered Gmail notifications, including Reply-To.
 
-The accepted migration snapshot is documented in `docs/MIGRATION_AUDIT.md`. The canonical source is now published to `cho-leung/leano-website` on `main`, with Pages serving from repository root over HTTPS. Current stage status is in `docs/HOSTING_STATUS.md`. No Google Sheet row, Gmail notification, prospect contact, domain purchase or paid hosting change has been made.
+See [PRODUCTION_INTEGRATION.md](docs/PRODUCTION_INTEGRATION.md) for the final technical gate and its evidence limits, and [HOSTING_STATUS.md](docs/HOSTING_STATUS.md) for hosting status. The accepted migration audit is a historical snapshot. Raw ledger/email evidence and operator identifiers remain in ignored local artifacts; none belong in Git.
 
-The configuration/hosting stage is authorized. Google account consent, private Script Properties and Apps Script Web App deployment require the operator; follow `docs/GOOGLE_CONFIGURATION_HANDOFF.md`. Once the operator returns a production `/exec` URL, the endpoint change and controlled live gate can continue. A live hosted controlled submission must create the correct Sheet row and Gmail notification with the correct Reply-To before the technical gate can pass.
+Only synthetic `controlled_test` fixtures are authorized by this stage. These checks do not establish market validation or authorize contacting prospects, buyers or Eneden. Commercial copy, languages, positioning, design and service scope are unchanged.

@@ -1,8 +1,8 @@
 # Leano Website v0.1 — Deployment Checklist
 
-**Current stage: static Pages site LIVE from main/root; backend configuration is awaiting operator Google interaction. Technical gate remains NOT PASSED.**
+**Current stage: Pages is LIVE from main/root; production endpoint configured. Final controlled technical results are in [PRODUCTION_INTEGRATION.md](PRODUCTION_INTEGRATION.md).**
 
-Local evidence is in `MIGRATION_AUDIT.md`; it does not satisfy the live RFQ technical gate in `RFQ_DEPLOYMENT.md`.
+Local migration evidence is in `MIGRATION_AUDIT.md`. The checklist below remains a reference; live RFQ evidence is recorded separately in `PRODUCTION_INTEGRATION.md`.
 
 ## Before public deployment
 

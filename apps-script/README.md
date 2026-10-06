@@ -1,6 +1,6 @@
 # Leano RFQ Apps Script backend
 
-`Code.gs` is server code. It is not loaded by the website. Local mocked checks passed. The configuration/hosting stage is now authorized, but Google account consent, private Script Properties and Web App deployment require operator interaction. No Google service has been contacted by the agent. Follow `../docs/GOOGLE_CONFIGURATION_HANDOFF.md`.
+`Code.gs` is server code, not loaded by the website. The operator completed private Script Properties, Google consent and production Web App deployment on 2026-10-06. The frontend now connects to that deployment. See `../docs/PRODUCTION_INTEGRATION.md` for live controlled verification and `../docs/GOOGLE_CONFIGURATION_HANDOFF.md` for configuration reference.
 
 ## Private configuration
 

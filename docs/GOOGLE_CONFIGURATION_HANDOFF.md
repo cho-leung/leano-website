@@ -1,6 +1,6 @@
 # Leano Google configuration handoff
 
-The static site is hosted at **https://cho-leung.github.io/leano-website/**. Its RFQ endpoint is unset and it cannot receive RFQs yet. The next steps require the operator's Google account, private Script Properties, service consent and Web App deployment interaction. The agent stopped at this boundary as instructed.
+The operator completed the Google-side steps below and supplied the production `/exec` URL on 2026-10-06. The central frontend endpoint is now connected. These instructions are retained for configuration reference; current live results are in [PRODUCTION_INTEGRATION.md](PRODUCTION_INTEGRATION.md).
 
 ## Operator actions
 
@@ -32,4 +32,4 @@ Do not paste OAuth tokens, passwords, credential JSON, the private property valu
 
 The agent can then centrally configure `RFQ_CONFIG.endpoint`, commit and push the change, verify the updated Pages assets and run clearly labeled `controlled_test` submissions. The correct Sheet row, Gmail notification, Reply-To, success state, invalid/failure path and mobile submission must be verified before the technical gate can pass. No real RFQ or prospect contact is authorized.
 
-**TECHNICAL GATE: NOT PASSED.** The hosted static site and earlier mocks do not satisfy the live backend gate.
+Current gate status is recorded in [PRODUCTION_INTEGRATION.md](PRODUCTION_INTEGRATION.md). A hosted static site or local mocks alone never satisfy the live backend gate.
