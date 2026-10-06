@@ -1,0 +1,73 @@
+{
+  "canonical_zip": "leano-website-v0.1-rfq.zip",
+  "canonical_zip_sha256": "63897572124939b9d5316259fba92d6df677cfac29403b8537acbe575441d96a",
+  "files": [
+    {
+      "archive_path": "leano-website-v0.1/README.md",
+      "repo_path": "README.md",
+      "sha256": "6e97c55dcee4bc129807963e27b0b07a6c003836ec5fc8abe31d6ad13e466321"
+    },
+    {
+      "archive_path": "leano-website-v0.1/index.html",
+      "repo_path": "index.html",
+      "sha256": "d54091139c88d5774289588296db64e5700eb981c0ecdafa56f1fc954d30aaf0"
+    },
+    {
+      "archive_path": "leano-website-v0.1/styles.css",
+      "repo_path": "styles.css",
+      "sha256": "a206a7c807789e7af939f4b0ad7c646d671c09157b5f59f7297903b244d882f6"
+    },
+    {
+      "archive_path": "leano-website-v0.1/DEPLOYMENT_CHECKLIST.md",
+      "repo_path": "docs/DEPLOYMENT_CHECKLIST.md",
+      "sha256": "4ebe5a9cca305266a6fe182d55ab8924fb0ac9b2c232a34d0131b3333efcb8a7"
+    },
+    {
+      "archive_path": "leano-website-v0.1/.nojekyll",
+      "repo_path": ".nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archive_path": "leano-website-v0.1/RFQ_DEPLOYMENT.md",
+      "repo_path": "docs/RFQ_DEPLOYMENT.md",
+      "sha256": "79cb6ae823baf7be327015ef8594567edc45ad96680707984790efbfe2430933"
+    },
+    {
+      "archive_path": "leano-website-v0.1/leano-preview-single-file.html",
+      "repo_path": "preview/leano-preview-single-file.html",
+      "sha256": "b9cb1bfbc2175f86480022cd1c3b9b8717420e17b940effccf9b26071ae398a1"
+    },
+    {
+      "archive_path": "leano-website-v0.1/DESIGN_SYSTEM.md",
+      "repo_path": "docs/DESIGN_SYSTEM.md",
+      "sha256": "9c8b24e00b20e3d81ed0c59aa2f2cd703913dc8228057fdd1996a1eff65cc531"
+    },
+    {
+      "archive_path": "leano-website-v0.1/script.js",
+      "repo_path": "script.js",
+      "sha256": "5045cadc4f6879a2f221179abaf6d6023e0362b536f178494035a0026f51142a"
+    },
+    {
+      "archive_path": "leano-website-v0.1/apps-script/README.md",
+      "repo_path": "apps-script/README.md",
+      "sha256": "2a36bede99104d699e9c729d4aa23b682b6bb6a095df46e5133a9bc172864400"
+    },
+    {
+      "archive_path": "leano-website-v0.1/apps-script/Code.gs",
+      "repo_path": "apps-script/Code.gs",
+      "sha256": "dd856b3d89b79f97a64d8dd2fde37cd5b650c5504ea2c0bc27d5887533755d8f"
+    },
+    {
+      "original_path": "leano-preview-single-file.html",
+      "repo_path": "archive/obsolete/leano-preview-single-file.html",
+      "sha256": "bf407a38d79e595d5da099be0bcc54147ea8397d881b858f29b81eb0116b5260",
+      "classification": "obsolete standalone preview; preserved, not production"
+    },
+    {
+      "original_path": "leano-preview-single-file-2.html",
+      "repo_path": "archive/obsolete/leano-preview-single-file-2.html",
+      "sha256": "4af0f45e1b8aac0f9cb01dc81b697d303870eb6dcdcb12a400f1026912adc77b",
+      "classification": "obsolete standalone preview; preserved, not production"
+    }
+  ]
+}

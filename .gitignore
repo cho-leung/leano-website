@@ -1,0 +1,22 @@
+# Preserve the source archive and older material locally without publishing them.
+/leano-website-v0.1-rfq.zip
+/archive/
+/preview/
+/audit-artifacts/
+
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+credentials*.json
+token*.json
+.clasp.json
+.clasprc.json
+
+# Customer exports and spreadsheets are never source files.
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.ods
