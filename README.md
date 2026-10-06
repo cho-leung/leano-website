@@ -19,6 +19,7 @@ script.js
 README.md
 apps-script/
   Code.gs
+  appsscript.json
   README.md
 docs/
   DESIGN_SYSTEM.md
@@ -26,6 +27,8 @@ docs/
   RFQ_DEPLOYMENT.md
   MIGRATION_MANIFEST.json
   MIGRATION_AUDIT.md
+  GOOGLE_CONFIGURATION_HANDOFF.md
+  HOSTING_STATUS.md
 tests/
   README.md
   serve.mjs
@@ -33,6 +36,7 @@ tests/
   backend.test.cjs
   i18n.test.cjs
   browser.test.cjs
+  live-static.test.cjs
 ```
 
 ## Languages
@@ -57,8 +61,8 @@ Configure `SPREADSHEET_ID`, `SITE_BASE_URL` and `NOTIFICATION_EMAIL` privately t
 
 ## Status and next stage
 
-**NOT DEPLOYED. Live backend tests: NOT RUN. Technical gate: NOT PASSED.**
+**GitHub Pages is live at https://cho-leung.github.io/leano-website/. RFQ backend is unconfigured. Live backend tests: NOT RUN. Technical gate: NOT PASSED.**
 
-Local migration and checks are documented in `docs/MIGRATION_AUDIT.md`. The source is ready for GitHub and for a separate Apps Script configuration stage. No remote repository, Pages site, Apps Script project or deployment was created. No Google Sheet, Gmail notification, prospect contact, domain or hosting change was made.
+The accepted migration snapshot is documented in `docs/MIGRATION_AUDIT.md`. The canonical source is now published to `cho-leung/leano-website` on `main`, with Pages serving from repository root over HTTPS. Current stage status is in `docs/HOSTING_STATUS.md`. No Google Sheet row, Gmail notification, prospect contact, domain purchase or paid hosting change has been made.
 
-When separately authorized, follow `docs/RFQ_DEPLOYMENT.md` and `docs/DEPLOYMENT_CHECKLIST.md`. A live hosted controlled submission must create the correct Sheet row and Gmail notification with the correct Reply-To before the technical gate can pass.
+The configuration/hosting stage is authorized. Google account consent, private Script Properties and Apps Script Web App deployment require the operator; follow `docs/GOOGLE_CONFIGURATION_HANDOFF.md`. Once the operator returns a production `/exec` URL, the endpoint change and controlled live gate can continue. A live hosted controlled submission must create the correct Sheet row and Gmail notification with the correct Reply-To before the technical gate can pass.

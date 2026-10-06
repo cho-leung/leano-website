@@ -1,6 +1,6 @@
 # Leano Website v0.1 — Deployment Checklist
 
-**Migration status: NOT DEPLOYED. This checklist describes a future authorized stage.**
+**Current stage: static Pages site LIVE from main/root; backend configuration is awaiting operator Google interaction. Technical gate remains NOT PASSED.**
 
 Local evidence is in `MIGRATION_AUDIT.md`; it does not satisfy the live RFQ technical gate in `RFQ_DEPLOYMENT.md`.
 

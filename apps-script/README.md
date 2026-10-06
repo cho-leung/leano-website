@@ -1,6 +1,6 @@
 # Leano RFQ Apps Script backend
 
-`Code.gs` is server code. It is not loaded by the website. Local mocked checks passed; no Google service was contacted and deployment remains unauthorized in this migration stage.
+`Code.gs` is server code. It is not loaded by the website. Local mocked checks passed. The configuration/hosting stage is now authorized, but Google account consent, private Script Properties and Web App deployment require operator interaction. No Google service has been contacted by the agent. Follow `../docs/GOOGLE_CONFIGURATION_HANDOFF.md`.
 
 ## Private configuration
 
@@ -41,9 +41,9 @@ These are schema documentation, not a customer-data export. The backend neither 
 
 No server idempotency or abuse/rate-limit service is implemented. The frontend latch stops repeated submits within a pending page; retries from other tabs are distinct requests. A transport failure or ambiguous append/flush failure still requires an operator check before retrying to avoid duplicates.
 
-## Future authorized configuration
+## Authorized configuration awaiting operator
 
-1. Create a standalone Apps Script project with the V8 runtime; copy `Code.gs`.
+1. Open the intended standalone Apps Script project, or create one if needed. Copy `Code.gs` and the provided `appsscript.json` manifest (V8, Asia/Shanghai and explicit Sheets/Gmail scopes).
 2. Set the private properties, confirm the exact ledger schema, and set the project timezone.
 3. Run `checkConfiguration` from the editor and approve the required Sheets/Gmail authorization. This helper reads the schema and Gmail aliases; it writes no row and sends no email. Do not run `doPost` manually without an event.
 4. Deploy a Web App executing as the deployment owner, with access suitable for anonymous prospects.

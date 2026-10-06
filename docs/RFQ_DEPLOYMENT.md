@@ -1,8 +1,8 @@
 # RFQ configuration and live technical gate
 
-**Current state: NOT DEPLOYED. Live backend test: NOT RUN. TECHNICAL GATE: NOT PASSED.**
+**Current state: static Pages site LIVE; Apps Script NOT CONFIGURED by the agent. Live backend test: NOT RUN. TECHNICAL GATE: NOT PASSED.**
 
-The migration authorizes local checks only. The following is a future procedure and has not been executed.
+The user authorized the configuration/hosting stage. The static site is https://cho-leung.github.io/leano-website/. The remaining Google account, private-property and deployment actions require the operator; follow `GOOGLE_CONFIGURATION_HANDOFF.md`.
 
 ## Prepared source
 
@@ -10,11 +10,11 @@ Five-language shared RFQ form; native `application/x-www-form-urlencoded` POST; 
 
 Required customer fields: company, email, requirement, destination. Optional: name, quantity, deadline, phone, additional_requirements. Metadata: language, source_page, referrer, campaign, outreach_source, submission_type. Attribution and test labels can be forged; no internal commercial state is accepted from the browser.
 
-## Future configuration
+## Backend configuration awaiting operator
 
-Follow `../apps-script/README.md` for private Script Properties and the exact **RFQ Ledger** schema. Configure `SPREADSHEET_ID`, `NOTIFICATION_EMAIL` and an HTTPS `SITE_BASE_URL`; the repository does not contain their actual values. The read-only `checkConfiguration` helper can verify access without writing a row or sending mail, once that stage is authorized.
+Follow `../apps-script/README.md` for private Script Properties and the exact **RFQ Ledger** schema. Configure `SPREADSHEET_ID`, `NOTIFICATION_EMAIL` and an HTTPS `SITE_BASE_URL`; the repository does not contain their actual values. The read-only `checkConfiguration` helper can verify access without writing a row or sending mail, after private configuration and human Google authorization.
 
-Then create the authorized Web App deployment, execute as owner with access appropriate for anonymous prospects, and configure its `/exec` URL in `../script.js`. Finally publish the static website from repository root. Preserve `.nojekyll` and relative asset paths. Do not publish ignored ZIPs, archives, frozen previews, audit artifacts, spreadsheet files, credentials or customer data.
+Then create the authorized Web App deployment, execute as owner with access appropriate for anonymous prospects, and configure its `/exec` URL in `../script.js`. The static website is already published from `main` at repository root; configuring the endpoint will require a new commit/push. Preserve `.nojekyll` and relative asset paths. Do not publish ignored ZIPs, archives, frozen previews, audit artifacts, spreadsheet files, credentials or customer data.
 
 ## Live gate — all remain unchecked
 
