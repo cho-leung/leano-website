@@ -42,6 +42,9 @@ async function fill(page) {
     await p.setViewportSize({ width, height: 900 });
     for (const [lang, locale] of Object.entries(locales)) {
       await p.goto(`${baseUrl}/leano-website/?lang=${lang}&utm_campaign=local-audit&utm_source=local-fixture&controlled_test=1#rfq`);
+      // Locale fonts and balanced wrapping must settle before measuring geometry.
+      await p.evaluate(() => document.fonts.ready);
+      await p.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const result = await p.evaluate(() => ({
         lang: document.documentElement.lang, title: document.title,
         description: document.querySelector('meta[name="description"]').content,
