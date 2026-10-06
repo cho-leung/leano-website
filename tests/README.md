@@ -24,8 +24,10 @@ The server serves only browser assets at both `/` and `/leano-website/`; every P
 
 ## Hosted static check before backend connection
 
-`node tests/live-static.test.cjs` checks the hosted Pages assets against local source digests and checks all five languages at desktop/mobile widths. It uses `controlled_test=1` and synthetic test text for frontend validation/unconfigured feedback. It blocks every POST and other origin, so it cannot test production persistence or send Gmail. Evidence goes to ignored `audit-artifacts/hosting/`. This check expects the endpoint to remain unset and must be replaced with the separately authorized live backend gate once `/exec` is configured.
+`node tests/live-static.test.cjs` checks the hosted Pages assets against local source digests and checks all five languages at desktop/mobile widths. It uses `controlled_test=1` and synthetic text. It checks validation and either disconnected feedback or the configured form action, leaving valid configured forms unsubmitted. It blocks every POST and other origin, so it cannot test production persistence or send Gmail. Evidence goes to ignored `audit-artifacts/hosting/`. A separately authorized production test is required for the live backend gate.
 
 If the host uses a system HTTP proxy, set `LEANO_TEST_PROXY` to that existing proxy URL so Playwright's asset requests use the same route as Chrome. Do not place proxy credentials in this repository.
 
 Static checks cover explicit tag structure, IDs, links/assets, ARIA references, form attributes, required fields, lexical CSS balance and the specified English claim phrases. They are not a full HTML standards validator, accessibility certification or translation certification. The browser suite checks 45 viewport/language combinations, URL preferences, metadata, native validation/POST, repeat submission, back-cache reset, no-JavaScript behavior, keyboard basics, clipboard feedback and motion. Apps Script tests establish local control-flow behavior only; Google runtime, quotas, permissions, delivery and live ledger state remain untested.
+
+The local browser suite substitutes only the endpoint value in its in-memory script responses to exercise disconnected and synthetic endpoint cases. All actual browser logic remains the production source. It never submits to the configured production Web App.

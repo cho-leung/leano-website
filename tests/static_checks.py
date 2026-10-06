@@ -71,8 +71,9 @@ assert not re.search(r'@import\b|url\(', css)
 
 js = (ROOT / 'script.js').read_text()
 assert 'no-cors' not in js and not re.search(r'\bfetch\s*\(', js)
-assert "endpoint: 'PASTE_APPS_SCRIPT_EXEC_URL_HERE'" in js
-assert not re.search(r'https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec', js)
+endpoints = re.findall(r"const RFQ_CONFIG = \{ endpoint: '([^']+)' \};", js)
+assert len(endpoints) == 1
+assert endpoints[0] == 'PASTE_APPS_SCRIPT_EXEC_URL_HERE' or re.fullmatch(r'https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec', endpoints[0])
 claims = ['global leader', 'world-class', 'trusted globally', 'hundreds of clients', 'authorized distributor', 'procurement platform', 'guaranteed savings', 'guaranteed lowest price', 'guaranteed stock', 'guaranteed delivery']
 matches = [claim for claim in claims if claim in (html + js).lower()]
 assert not matches, matches

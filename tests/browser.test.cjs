@@ -7,6 +7,8 @@ const baseUrl = process.env.LEANO_TEST_URL || 'http://127.0.0.1:4173';
 const artifacts = path.join(__dirname, '../audit-artifacts');
 fs.mkdirSync(artifacts, { recursive: true });
 const source = fs.readFileSync(path.join(__dirname, '../script.js'), 'utf8');
+const configuredEndpoint = source.match(/const RFQ_CONFIG = \{ endpoint: '([^']+)' \};/)[1];
+const unconfiguredSource = source.replace(configuredEndpoint, 'PASTE_APPS_SCRIPT_EXEC_URL_HERE');
 const locales = { en: 'en', zh: 'zh-CN', fr: 'fr', ru: 'ru', es: 'es' };
 const labels = { en: 'Company', zh: '公司', fr: 'Entreprise', ru: 'Компания', es: 'Empresa' };
 const report = { browser: '', source_sha256: createHash('sha256').update(source).digest('hex'),
@@ -21,6 +23,8 @@ async function context(options = {}) {
     if (url.startsWith(baseUrl + '/')) return route.continue();
     report.external_requests.push(url); await route.abort();
   });
+  // Local tests never use the real endpoint; exercise disconnected and synthetic endpoint modes.
+  await c.route('**/script.js', route => route.fulfill({ contentType: 'text/javascript', body: unconfiguredSource }));
   c.on('page', p => { p.on('pageerror', e => report.errors.push(e.message)); });
   return c;
 }
@@ -126,7 +130,7 @@ async function fill(page) {
   // Only an in-memory test response substitutes this endpoint. No Google request is sent.
   const endpoint = 'https://script.google.com/macros/s/LOCAL_TEST_ONLY/exec';
   const tc = await context();
-  await tc.route('**/script.js', route => route.fulfill({ contentType: 'text/javascript', body: source.replace('PASTE_APPS_SCRIPT_EXEC_URL_HERE', endpoint) }));
+  await tc.route('**/script.js', route => route.fulfill({ contentType: 'text/javascript', body: source.replace(configuredEndpoint, endpoint) }));
   const tp = await tc.newPage(); const posts = [];
   await tc.route(endpoint, async route => {
     const request = route.request();
@@ -154,7 +158,7 @@ async function fill(page) {
   check('intercepted native URL-encoded POST; single request, metadata, submit latch and back-cache reset');
 
   const dev = await context();
-  await dev.route('**/script.js', route => route.fulfill({ contentType: 'text/javascript', body: source.replace('PASTE_APPS_SCRIPT_EXEC_URL_HERE', endpoint.replace('/exec', '/dev')) }));
+  await dev.route('**/script.js', route => route.fulfill({ contentType: 'text/javascript', body: source.replace(configuredEndpoint, endpoint.replace('/exec', '/dev')) }));
   const dp = await dev.newPage(); await dp.goto(baseUrl + '/?lang=en'); await fill(dp);
   await dp.locator('[data-rfq-submit]').click(); assert.equal(dp.url(), baseUrl + '/?lang=en');
   assert.match(await dp.locator('[data-rfq-status]').textContent(), /not connected yet/);

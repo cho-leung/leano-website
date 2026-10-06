@@ -12,7 +12,7 @@
   const rfqStatus = document.querySelector('[data-rfq-status]');
 
   // Production configuration: replace this once after Apps Script is deployed as /exec.
-  const RFQ_CONFIG = { endpoint: 'PASTE_APPS_SCRIPT_EXEC_URL_HERE' };
+  const RFQ_CONFIG = { endpoint: 'https://script.google.com/macros/s/AKfycbwny2Lu9DvREl_te12o7_KJxhgXUiwTNAEjWkK9zPImF3g7WevC03nyLt5DZLPNseqq/exec' };
   const isProductionEndpoint = (endpoint) => /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(endpoint);
 
   const languages = {

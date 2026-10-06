@@ -7,6 +7,7 @@ const { createHash } = require('node:crypto');
 const base = 'https://cho-leung.github.io/leano-website/';
 const root = path.join(__dirname, '..');
 const dir = path.join(root, 'audit-artifacts/hosting');
+const configuredEndpoint = fs.readFileSync(path.join(root, 'script.js'), 'utf8').match(/const RFQ_CONFIG = \{ endpoint: '([^']+)' \};/)[1];
 fs.mkdirSync(dir, { recursive: true });
 const report = { url: base, assets: [], renderings: [], frontend: [], blocked: [], errors: [], live_backend: 'NOT RUN' };
 let browser;
@@ -55,13 +56,20 @@ let browser;
       await p.locator(`[name="${name}"]`).fill(value);
     }
     await p.locator('[name="email"]').fill('invalid-email');
+    await p.locator('[data-rfq-submit]').click();
     assert.equal(await p.locator('form').evaluate(f => f.checkValidity()), false);
     await p.locator('[name="email"]').fill('controlled-test@example.invalid');
-    await p.locator('[data-rfq-submit]').click();
-    assert.match(await p.locator('[data-rfq-status]').textContent(), /not connected yet/);
+    if (configuredEndpoint === 'PASTE_APPS_SCRIPT_EXEC_URL_HERE') {
+      await p.locator('[data-rfq-submit]').click();
+      assert.match(await p.locator('[data-rfq-status]').textContent(), /not connected yet/);
+    } else {
+      assert.equal(await p.locator('form').getAttribute('action'), configuredEndpoint);
+      assert.equal(await p.locator('form').evaluate(f => f.checkValidity()), true);
+      // Leave the valid form unsubmitted: controlled production tests require their own operator fixture.
+    }
     assert.equal(new URL(p.url()).pathname, '/leano-website/');
     assert.equal(await p.locator('[data-rfq-submit]').isDisabled(), false);
-    report.frontend.push({ width, check: 'invalid email and unconfigured-endpoint feedback', status: 'PASS' });
+    report.frontend.push({ width, check: configuredEndpoint === 'PASTE_APPS_SCRIPT_EXEC_URL_HERE' ? 'invalid email and unconfigured-endpoint feedback' : 'invalid email and configured form action (no POST)', status: 'PASS' });
   }
   assert.deepEqual(report.blocked, []); assert.deepEqual(report.errors, []);
   report.status = 'PASS: static hosting/frontend only; backend technical gate NOT PASSED';
