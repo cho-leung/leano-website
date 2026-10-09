@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
-const base = 'https://cho-leung.github.io/leano-website/';
+const base = 'https://leanosourcing.com/';
 const root = path.join(__dirname, '..');
 const dir = path.join(root, 'audit-artifacts/hosting');
 const configuredEndpoint = fs.readFileSync(path.join(root, 'script.js'), 'utf8').match(/const RFQ_CONFIG = \{ endpoint: '([^']+)' \};/)[1];
@@ -67,7 +67,7 @@ let browser;
       assert.equal(await p.locator('form').evaluate(f => f.checkValidity()), true);
       // Leave the valid form unsubmitted: controlled production tests require their own operator fixture.
     }
-    assert.equal(new URL(p.url()).pathname, '/leano-website/');
+    assert.equal(new URL(p.url()).pathname, '/');
     assert.equal(await p.locator('[data-rfq-submit]').isDisabled(), false);
     report.frontend.push({ width, check: configuredEndpoint === 'PASTE_APPS_SCRIPT_EXEC_URL_HERE' ? 'invalid email and unconfigured-endpoint feedback' : 'invalid email and configured form action (no POST)', status: 'PASS' });
   }

@@ -7,7 +7,7 @@ Date: 2026-10-06 (Asia/Shanghai). The user authorized publishing `main`, GitHub 
 | GIT COMMIT | Canonical import `7b08046c8e265c39776e7e749eb17de782765dc3`; Google handoff `a7ba79fb4395b1e3d045ba7cf9b2fd4a902f0b82`; production endpoint `eb91ca028469ab3bce392efab0491b7fa466f7b1` |
 | GITHUB REPO | [cho-leung/leano-website](https://github.com/cho-leung/leano-website), public |
 | GITHUB PUSH | Production endpoint committed and pushed to `main` |
-| LIVE URL | [cho-leung.github.io/leano-website](https://cho-leung.github.io/leano-website/) |
+| LIVE URL | [leanosourcing.com](https://leanosourcing.com/) |
 | GITHUB PAGES STATUS | Built and publicly reachable over HTTPS, serving `main` / `/`; hosted assets match configured local sources |
 | APPS SCRIPT CONFIG STATUS | Operator reports properties, checkConfiguration and Sheets/Gmail consent completed; successful live persistence/notification verifies the working path |
 | APPS SCRIPT /exec STATUS | Supplied by operator; publicly reachable and accepting actual native form submissions |
@@ -22,6 +22,6 @@ Date: 2026-10-06 (Asia/Shanghai). The user authorized publishing `main`, GitHub 
 
 Full results, controlled-fixture accounting, local evidence locations and testing limits are in [PRODUCTION_INTEGRATION.md](PRODUCTION_INTEGRATION.md). The accepted [migration audit](MIGRATION_AUDIT.md) remains a historical snapshot.
 
-Public author metadata uses GitHub's noreply address. ZIPs, obsolete/frozen previews, local evidence, spreadsheet exports and credentials remain excluded from Git. No private property values or customer data were published. No paid service, domain, pricing, commercial positioning or prospect contact was added.
+Public author metadata uses GitHub's noreply address. ZIPs, obsolete/frozen previews, local evidence, spreadsheet exports and credentials remain excluded from Git. No private property values or customer data were published. The custom domain `leanosourcing.com` is now configured for the existing GitHub Pages deployment. No pricing, commercial positioning or prospect contact was changed.
 
 The [Google handoff](GOOGLE_CONFIGURATION_HANDOFF.md) remains a configuration reference. Later Google account or deployment approval still requires the operator; this stage required no additional Google interaction.

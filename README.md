@@ -62,7 +62,7 @@ Configure `SPREADSHEET_ID`, `SITE_BASE_URL` and `NOTIFICATION_EMAIL` privately t
 
 ## Production integration status
 
-GitHub Pages is live at [cho-leung.github.io/leano-website](https://cho-leung.github.io/leano-website/), serving `main` from repository root over HTTPS. The operator completed private Google configuration, consent and Web App deployment. The endpoint is configured and live controlled submissions have been checked against the intended ledger and delivered Gmail notifications, including Reply-To.
+GitHub Pages is live at [leanosourcing.com](https://leanosourcing.com/), serving `main` from repository root over HTTPS with the custom domain configured. The operator completed private Google configuration, consent and Web App deployment. The endpoint is configured and live controlled submissions have been checked against the intended ledger and delivered Gmail notifications, including Reply-To.
 
 See [PRODUCTION_INTEGRATION.md](docs/PRODUCTION_INTEGRATION.md) for the final technical gate and its evidence limits, and [HOSTING_STATUS.md](docs/HOSTING_STATUS.md) for hosting status. The accepted migration audit is a historical snapshot. Raw ledger/email evidence and operator identifiers remain in ignored local artifacts; none belong in Git.
 
