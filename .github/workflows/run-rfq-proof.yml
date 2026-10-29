@@ -43,6 +43,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
+          NODE_PATH=/tmp/leano-playwright/node_modules LEANO_BROWSER_CHANNEL=chromium node tools/diagnose_rfq_proof.cjs
           NODE_PATH=/tmp/leano-playwright/node_modules LEANO_BROWSER_CHANNEL=chromium node tests/browser.test.cjs
           NODE_PATH=/tmp/leano-playwright/node_modules LEANO_BROWSER_CHANNEL=chromium node tests/locale-visual.test.cjs
 
@@ -50,9 +51,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py tools/shorten_rfq_proof_labels.py
+          rm -f tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py tools/shorten_rfq_proof_labels.py tools/diagnose_rfq_proof.cjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html styles.css script.js tests/search_discoverability.py tests/rfq_proof.test.cjs tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py tools/shorten_rfq_proof_labels.py
+          git add index.html styles.css script.js tests/search_discoverability.py tests/rfq_proof.test.cjs tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py tools/shorten_rfq_proof_labels.py tools/diagnose_rfq_proof.cjs
           git commit -m "Add anonymized real-RFQ proof-of-work section"
           git push origin HEAD:build/anonymized-rfq-proof
