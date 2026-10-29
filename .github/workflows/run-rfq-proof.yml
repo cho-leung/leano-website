@@ -18,7 +18,9 @@ jobs:
           ref: build/anonymized-rfq-proof
 
       - name: Apply authorized patch
-        run: python3 tools/apply_rfq_proof.py
+        run: |
+          python3 tools/apply_rfq_proof.py
+          python3 tools/fix_rfq_proof_mobile.py
 
       - name: Run static, syntax, backend, i18n and evidence tests
         shell: bash
@@ -47,9 +49,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f tools/apply_rfq_proof.py
+          rm -f tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html styles.css script.js tests/search_discoverability.py tests/rfq_proof.test.cjs tools/apply_rfq_proof.py
+          git add index.html styles.css script.js tests/search_discoverability.py tests/rfq_proof.test.cjs tools/apply_rfq_proof.py tools/fix_rfq_proof_mobile.py
           git commit -m "Add anonymized real-RFQ proof-of-work section"
           git push origin HEAD:build/anonymized-rfq-proof
