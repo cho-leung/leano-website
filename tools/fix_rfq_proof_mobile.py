@@ -17,9 +17,12 @@ fix = r'''
 .proof-head > *, .proof-grid > *, .proof-principles > * { min-width: 0; }
 .proof-head h2, .proof-head .section-intro { overflow-wrap: anywhere; }
 .proof-head .section-index {
+  display: block;
+  width: 100%;
   max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 html:not([lang="en"]) .proof-head h2 {
   overflow-wrap: anywhere;
@@ -31,7 +34,7 @@ html[lang="ru"] .proof-head h2 { font-size: clamp(2.8rem, 4.5vw, 5.4rem); }
 html[lang="fr"] .proof-head h2,
 html[lang="es"] .proof-head h2 { font-size: clamp(3rem, 5vw, 5.8rem); }
 @media (max-width: 900px) {
-  .proof-head .section-index { font-size: 0.62rem; letter-spacing: 0.04em; }
+  .proof-head .section-index { font-size: 0.58rem; letter-spacing: 0.02em; }
 }
 @media (max-width: 560px) {
   .proof-head h2 { font-size: 2.75rem; line-height: 0.94; }
