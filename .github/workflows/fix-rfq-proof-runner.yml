@@ -1,0 +1,39 @@
+name: Fix RFQ proof runner
+
+on:
+  push:
+    branches:
+      - build/anonymized-rfq-proof
+
+permissions:
+  contents: write
+
+jobs:
+  fix-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: build/anonymized-rfq-proof
+      - name: Correct Spanish anchor and re-arm one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/apply-rfq-proof.yml')
+          s = p.read_text(encoding='utf-8')
+          old = "sectionRfq: '06 / Enviar solicitud'"
+          new = "sectionRfq: '06 / Enviar una solicitud'"
+          if old not in s:
+              raise SystemExit('Spanish workflow anchor not found')
+          s = s.replace(old, new, 1)
+          s = s.replace("    if: github.actor != 'github-actions[bot]'\n", '', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm -f .github/workflows/fix-rfq-proof-runner.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/apply-rfq-proof.yml .github/workflows/fix-rfq-proof-runner.yml
+          git commit -m "Fix RFQ proof workflow anchor"
+          git push origin HEAD:build/anonymized-rfq-proof
