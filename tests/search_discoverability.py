@@ -9,17 +9,17 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
-CANONICAL = 'https://cho-leung.github.io/leano-website/'
+CANONICAL = 'https://leanosourcing.com/'
 ENDPOINT = 'https://script.google.com/macros/s/AKfycbwny2Lu9DvREl_te12o7_KJxhgXUiwTNAEjWkK9zPImF3g7WevC03nyLt5DZLPNseqq/exec'
 ROBOTS = 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'
-# Accepted production baseline 2dffb87; this pass changes only head metadata.
+# Accepted baseline after authorized anonymized RFQ proof-of-work update.
 PROTECTED = {
-    'script.js': '18add231018cc0724303f363f1da9ca621f58b03b9599157a2c280fc03778d95',
-    'styles.css': '05677b4987f64b6ad1f39e16c2ce6ea930dd959f7b3c6ab5e0e1084e2d78773a',
+    'script.js': '732a870949db294303d8df2e3749d7292fa674c1d461c019300a3aed213b51de',
+    'styles.css': '158dd7eb6700951a3941cb481294c2ad5795a998fe0862ec855db1091d0cbc93',
     'apps-script/Code.gs': '940436a1631af58e87e2f6e5c9800d1f20d89cbb0871c0220a65dce358803ef3',
     'apps-script/appsscript.json': '8a11d552c35b48c0dc84a4c0da91c261ba35da01429635fd447d68c31787dc5b',
 }
-BODY_SHA256 = '87edde2b437a6c030bf7065e8b2f629b6343e53c3dc82adf7ccb12d50bfeb0e3'
+BODY_SHA256 = '21fa31eac14ebc4954a51f0744c6b8ee88ef24ed50276d23680a9719f54e5482'
 
 
 class Metadata(HTMLParser):
@@ -100,7 +100,7 @@ def main():
         assert digest((ROOT / file).read_bytes()) == expected, file + ' changed outside scope'
     endpoint = re.findall(r"const RFQ_CONFIG = \{ endpoint: '([^']+)' \};", (ROOT / 'script.js').read_text())
     assert endpoint == [ENDPOINT], 'RFQ production endpoint changed'
-    report.update({'protected_files': 'PASS', 'page_body': 'UNCHANGED', 'rfq_endpoint': 'UNCHANGED', 'apps_script': 'UNCHANGED'})
+    report.update({'protected_files': 'PASS', 'page_body': 'PASS: authorized proof baseline', 'rfq_endpoint': 'UNCHANGED', 'apps_script': 'UNCHANGED'})
     if args.live:
         hosted = {}
         for file in ['index.html', 'sitemap.xml', 'script.js', 'styles.css']:
