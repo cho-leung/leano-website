@@ -14,12 +14,12 @@ ENDPOINT = 'https://script.google.com/macros/s/AKfycbwny2Lu9DvREl_te12o7_KJxhgXU
 ROBOTS = 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'
 # Accepted baseline after authorized anonymized RFQ proof-of-work update.
 PROTECTED = {
-    'script.js': '732a870949db294303d8df2e3749d7292fa674c1d461c019300a3aed213b51de',
+    'script.js': 'cf3e9455c993cdf602f679e7f7098f895846599df451e54176e2cef1e9028b15',
     'styles.css': '158dd7eb6700951a3941cb481294c2ad5795a998fe0862ec855db1091d0cbc93',
     'apps-script/Code.gs': '940436a1631af58e87e2f6e5c9800d1f20d89cbb0871c0220a65dce358803ef3',
     'apps-script/appsscript.json': '8a11d552c35b48c0dc84a4c0da91c261ba35da01429635fd447d68c31787dc5b',
 }
-BODY_SHA256 = '21fa31eac14ebc4954a51f0744c6b8ee88ef24ed50276d23680a9719f54e5482'
+BODY_SHA256 = 'c951c7f7046a23fed7e037e5d59cec810f66d9ba65a2f4e2f7ab289d95d4b99e'
 
 
 class Metadata(HTMLParser):
